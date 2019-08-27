@@ -1,0 +1,16 @@
+# Importing libraries
+import os
+import pandas as pd
+os.getcwd()
+os.chdir('C:\\Users\\Karthik\\Downloads')
+
+# Importing the dataset
+Forest = pd.read_csv("forestfires.csv")
+ForestFire1 = Forest.iloc[:,:].values
+ForestFire = Forest.iloc[:,:].values
+
+# Mean Imputation using Scikit learning
+from sklearn.preprocessing import Imputer
+imputer = Imputer(missing_values="NaN", strategy="mean", axis = 0)
+imputer = imputer.fit(ForestFire[:, 8:9])
+ForestFire[:, 8:9] = imputer.transform(ForestFire[:, 8:9])
