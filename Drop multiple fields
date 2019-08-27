@@ -1,0 +1,32 @@
+#Import necessary libraries
+import os
+os.chdir('C:\\Users\\Karthik\\Downloads')
+import pandas as pd 
+
+#Read the file as a dataframe
+ForestFire = pd.read_csv('forestfires.csv') 
+Forestcopy = ForestFire
+Forestcopy1 = ForestFire
+Forestcopy2 = ForestFire
+Forestcopy3 = ForestFire
+
+#Method 1: Direct method
+#Remove a single column with column name
+Test1 = ForestFire.drop('Y', axis = 1) 
+#Remove a multiple column with column name
+Test2 = ForestFire.drop(['X','Y','month','day'], axis =1)
+#Remove columns based on column index Note: The removal will affect the original dataset
+Forestcopy.drop(Forestcopy.columns[[0, 4, 2]], axis = 1, inplace = True) 
+
+#Method 2: ILOC[] method
+# Remove all columns between column index 1 to 3  Note: The removal will affect the original dataset
+Forestcopy1.drop(Forestcopy1.iloc[:, 1:3], inplace = True, axis = 1)
+
+#Method 3: IX[] method
+# Remove all columns between a specific column name to another column name Note: The removal will affect the original dataset
+Forestcopy2.drop(Forestcopy2.ix[:, 'X':'DMC'].columns, axis = 1) 
+
+#Method 4: LOC[] method
+# Remove all columns between a specific column name to another column name Note: The removal will affect the original dataset
+Forestcopy3.drop(Forestcopy3.loc[:, 'X':'DMC'].columns, axis = 1) 
+
